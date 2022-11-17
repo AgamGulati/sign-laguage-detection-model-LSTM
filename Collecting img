@@ -1,3 +1,4 @@
+
 import os
 import cv2
 cap=cv2.VideoCapture(0)
@@ -5,15 +6,14 @@ directory='Image/'
 while True:
     _,frame=cap.read()
     count = {
-             'Thumbsup': len(os.listdir(directory+"/Thumbsup")),
-             'Thumbsdown': len(os.listdir(directory+"/Thumbsdown")),
-             'Iloveyou': len(os.listdir(directory+"/Iloveyou")),
-             'Livelife': len(os.listdir(directory+"/Livelife")),
-             }
-    # cv2.putText(frame, "Thumbsup : "+str(count['Thumbsup']), (10, 100), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), 1)
-    # cv2.putText(frame, "thumbsdown : "+str(count['Thumbsdown']), (10, 110), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), 1)
-    # cv2.putText(frame, "Iloveyou : "+str(count['Iloveyou']), (10, 120), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), 1)
-    # cv2.putText(frame, "Livelife : "+str(count['Livelife']), (10, 130), cv2.FONT_HERSHEY_PLAIN, 1, (0,255,255), 1)
+             'a': len(os.listdir(directory+"/Livelong")),
+             'b': len(os.listdir(directory+"/Iloveyou")),
+             'c': len(os.listdir(directory+"/Thumbsup")),
+             'd': len(os.listdir(directory+"/Hello")),
+             'e': len(os.listdir(directory+"/Thumbsdown")),
+             'f': len(os.listdir(directory+"/Ok")),
+             'g': len(os.listdir(directory+"/Pain")),
+            }
     row = frame.shape[1]
     col = frame.shape[0]
     cv2.rectangle(frame,(0,40),(300,400),(255,255,255),2)
@@ -22,13 +22,20 @@ while True:
     frame=frame[40:400,0:300]
     interrupt = cv2.waitKey(10)
     if interrupt & 0xFF == ord('a'):
-        cv2.imwrite(directory+'Thumbsup/'+str(count['Thumbsup'])+'.png',frame)
+        cv2.imwrite(directory+'Livelong/'+str(count['a'])+'.png',frame)
     if interrupt & 0xFF == ord('b'):
-        cv2.imwrite(directory+'Thumbsdown/'+str(count['Thumbsdown'])+'.png',frame)
+        cv2.imwrite(directory+'Iloveyou/'+str(count['b'])+'.png',frame)
     if interrupt & 0xFF == ord('c'):
-        cv2.imwrite(directory+'Iloveyou/'+str(count['Iloveyou'])+'.png',frame)
+        cv2.imwrite(directory+'Thumbsup/'+str(count['c'])+'.png',frame)
     if interrupt & 0xFF == ord('d'):
-        cv2.imwrite(directory+'Livelife/'+str(count['Livelife'])+'.png',frame)
+        cv2.imwrite(directory+'Hello/'+str(count['d'])+'.png',frame)
+    if interrupt & 0xFF == ord('e'):
+        cv2.imwrite(directory+'Thumbsdown/'+str(count['e'])+'.png',frame)
+    if interrupt & 0xFF == ord('f'):
+        cv2.imwrite(directory+'Ok/'+str(count['f'])+'.png',frame)
+    if interrupt & 0xFF == ord('g'):
+        cv2.imwrite(directory+'Pain/'+str(count['g'])+'.png',frame)
+
 
 cap.release()
 cv2.destroyAllWindows()
